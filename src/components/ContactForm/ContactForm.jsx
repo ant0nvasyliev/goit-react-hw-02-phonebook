@@ -6,13 +6,15 @@ import { nanoid } from 'nanoid'
 
 const schema = Yup.object().shape({
    name: Yup.string()
+   .matches(/^[A-Za-zА-Яа-яЁё\s]+$/, 'Invalid name')
+   .required('This is required!')
    .min(4, 'Too Short!')
-   .max(50, 'Too Long!')
-   .required('Required'),
+   .max(50, 'Too Long!'),
    number: Yup.string()
+   .matches(/^\+?[0-9]{1,3}-?[0-9]/, 'Invalid number')
+   .required('This is required!') 
    .min(6, 'Too Short!')
-   .max(500, 'Too Long!')
-   .required('Required'), 
+   .max(20, 'Too Long!'),
 });
 
 export const ContactForm = ({addContact}) => {
